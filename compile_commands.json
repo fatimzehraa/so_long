@@ -1,0 +1,226 @@
+[
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/main.c", 
+   "-o", 
+   "build/main.o"
+  ], 
+  "file": "src/main.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstnew.c", 
+   "-o", 
+   "build/lists/ft_lstnew.o"
+  ], 
+  "file": "src/lists/ft_lstnew.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstadd_back.c", 
+   "-o", 
+   "build/lists/ft_lstadd_back.o"
+  ], 
+  "file": "src/lists/ft_lstadd_back.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstiter.c", 
+   "-o", 
+   "build/lists/ft_lstiter.o"
+  ], 
+  "file": "src/lists/ft_lstiter.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstsize.c", 
+   "-o", 
+   "build/lists/ft_lstsize.o"
+  ], 
+  "file": "src/lists/ft_lstsize.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstlast.c", 
+   "-o", 
+   "build/lists/ft_lstlast.o"
+  ], 
+  "file": "src/lists/ft_lstlast.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstmap.c", 
+   "-o", 
+   "build/lists/ft_lstmap.o"
+  ], 
+  "file": "src/lists/ft_lstmap.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/gnl/get_next_line_utils.c", 
+   "-o", 
+   "build/gnl/get_next_line_utils.o"
+  ], 
+  "file": "src/gnl/get_next_line_utils.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/gnl/get_next_line.c", 
+   "-o", 
+   "build/gnl/get_next_line.o"
+  ], 
+  "file": "src/gnl/get_next_line.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstclear.c", 
+   "-o", 
+   "build/lists/ft_lstclear.o"
+  ], 
+  "file": "src/lists/ft_lstclear.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/parse.c", 
+   "-o", 
+   "build/parse.o"
+  ], 
+  "file": "src/parse.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstdelone.c", 
+   "-o", 
+   "build/lists/ft_lstdelone.o"
+  ], 
+  "file": "src/lists/ft_lstdelone.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/check_map.c", 
+   "-o", 
+   "build/check_map.o"
+  ], 
+  "file": "src/check_map.c"
+ }, 
+ {
+  "directory": "/Users/fael-bou/Desktop/so_long", 
+  "arguments": [
+   "cc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I./inc", 
+   "-I/usr/local/include/", 
+   "-c", 
+   "src/lists/ft_lstadd_front.c", 
+   "-o", 
+   "build/lists/ft_lstadd_front.o"
+  ], 
+  "file": "src/lists/ft_lstadd_front.c"
+ }
+]
