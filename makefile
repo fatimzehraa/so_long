@@ -6,7 +6,7 @@
 #    By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 01:29:22 by fael-bou          #+#    #+#              #
-#    Updated: 2022/04/23 21:19:00 by fael-bou         ###   ########.fr        #
+#    Updated: 2022/04/25 05:20:59 by fael-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INCLUDE = -I./inc -I/usr/local/include/
 
 BUILD_DIR = build
 
-FILES = main.o parse.o check_map.o put_img.o\
+FILES = main.o parse.o check_map.o put_img.o moves.o\
 		gnl/get_next_line.o gnl/get_next_line_utils.o \
 		lists/ft_lstadd_back.o lists/ft_lstclear.o lists/ft_lstiter.o \
 		lists/ft_lstmap.o lists/ft_lstsize.o lists/ft_lstadd_front.o \
@@ -41,5 +41,6 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
+re : fclean all
 
 .PHONY: all clean fclean

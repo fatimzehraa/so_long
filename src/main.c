@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/24 04:19:58 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/25 05:05:25 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 #include "list.h"
 #include "so_long.h"
 
-void set_win(t_map *map, t_list *lines)
+void set_win(t_context *ctx, t_list *lines)
 {
 	t_list *cur;
+	t_map *map;
+	int side;
 
+	map = &ctx->map;
 	map->height = 0;
 	cur = lines;
 	while (cur)
@@ -29,7 +32,10 @@ void set_win(t_map *map, t_list *lines)
 	}
 	map->height *= SIDE_SQUARE;
 	map->width = ft_strlen(lines->content) * SIDE_SQUARE;
-	
+	map->character = mlx_xpm_file_to_image(ctx->mlx, "P.xpm", &side, &side);
+	map->wall = mlx_xpm_file_to_image(ctx->mlx, "1.xpm", &side, &side);
+	map->coin = mlx_xpm_file_to_image(ctx->mlx, "C.xpm", &side, &side);
+	map->exit = mlx_xpm_file_to_image(ctx->mlx, "E.xpm", &side, &side);
 }
 
 void set_square(t_context ctx , int x, int y, int color)
@@ -64,18 +70,15 @@ void draw(t_context ctx)
 		while (x < ctx.map.width)
 		{
 			if (*line == '1')
-				put_img(ctx, x, y, "1.xpm");
+				put_img(ctx, x, y, ctx.map.wall);
 			else if (*line == '0')
-				set_square(ctx, x, y, 0x000000);
-//				put_img(ctx, x, y, "P.xpm");
+				set_square(ctx, x, y, 0xFFFFFF);
 			else if (*line == 'C')
-				put_img(ctx, x, y, "coin.xpm");
-//			else if (*line == 'P')
-//				set_square(ctx, x, y, 0xF000FF);
+				put_img(ctx, x, y, ctx.map.coin);
 			else if (*line == 'P')
-				put_img(ctx, x, y, "P.xpm");
+				put_img(ctx, x, y, ctx.map.character);
 			else if (*line == 'E')
-				put_img(ctx, x, y, "Eclosed.xpm");
+				put_img(ctx, x, y, ctx.map.exit);
 			line++;
 			x+= SIDE_SQUARE;
 		}
@@ -94,12 +97,11 @@ int main()
 		printf("%s", (char *)lines->content);
 
 	ctx.map.lines = lines;
-	set_win(&ctx.map, lines);
 	ctx.mlx = mlx_init();
+	set_win(&ctx, lines);
 	ctx.win = mlx_new_window(ctx.mlx, ctx.map.width, ctx.map.height, "so_long");
+	mlx_key_hook( ctx.win, key_event, &ctx);
 
-
-//	set_square(ctx, 20, 20, 0xFFFFFF);
 	draw(ctx);
 	mlx_loop(ctx.mlx);
 }
