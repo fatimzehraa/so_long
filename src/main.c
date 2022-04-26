@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/25 05:05:25 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/26 03:26:24 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,29 @@ void set_square(t_context ctx , int x, int y, int color)
 	}
 }
 
-void draw(t_context ctx)
+void draw(t_context *ctx)
 {
 	int y = 0;
 	char *line;
 	t_list *cur;
 
-	cur = ctx.map.lines;
-	while (y < ctx.map.height)
+	cur = ctx->map.lines;
+	while (y < ctx->map.height)
 	{
 		int x = 0;
 		line = cur->content;
-		while (x < ctx.map.width)
+		while (x < ctx->map.width)
 		{
 			if (*line == '1')
-				put_img(ctx, x, y, ctx.map.wall);
+				put_img(*ctx, x, y, ctx->map.wall);
 			else if (*line == '0')
-				set_square(ctx, x, y, 0xFFFFFF);
+				set_square(*ctx, x, y, 0xFFFFFF);
 			else if (*line == 'C')
-				put_img(ctx, x, y, ctx.map.coin);
+				put_img(*ctx, x, y, ctx->map.coin);
 			else if (*line == 'P')
-				put_img(ctx, x, y, ctx.map.character);
+				put_img(*ctx, x, y, ctx->map.character);
 			else if (*line == 'E')
-				put_img(ctx, x, y, ctx.map.exit);
+				put_img(*ctx, x, y, ctx->map.exit);
 			line++;
 			x+= SIDE_SQUARE;
 		}
@@ -102,6 +102,6 @@ int main()
 	ctx.win = mlx_new_window(ctx.mlx, ctx.map.width, ctx.map.height, "so_long");
 	mlx_key_hook( ctx.win, key_event, &ctx);
 
-	draw(ctx);
+	draw(&ctx);
 	mlx_loop(ctx.mlx);
 }

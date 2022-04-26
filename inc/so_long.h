@@ -34,6 +34,7 @@ enum e_keys {
 int check_map(t_list *lines);
 t_list	*parse(char *filename);
 void put_img(t_context ctx, int x, int y, void *img);
+void draw(t_context *ctx);
 int key_event(int key, t_context *ctx);
 
 int main();

@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:42:36 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/20 00:44:26 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/26 06:47:58 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	char			*content;
 	struct s_list	*next;
 }	t_list;
 
