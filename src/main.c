@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/26 03:26:24 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/27 05:21:26 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int main()
 	t_context ctx;
 	t_list *lines;
 
-	lines = parse("maps");
+	lines = parse("maps", &ctx.map);
 	if (lines)
 		printf("%s", (char *)lines->content);
 

@@ -6,61 +6,58 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 02:05:24 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/22 01:57:05 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/27 04:31:01 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "list.h"
 #include "so_long.h"
+#include <stdlib.h>
 
-char *get_str(t_list *line)
+int check_wall(char *str)
 {
-	return ((char *)line->content);
-}
-
-int check_borders(t_list *lines)
-{
-	t_list *cur;
-	char	*str;
 	int i;
 
-	cur = lines;
-	while(cur)
-	{
-		str = get_str(cur);
-		if (str[0] != '1' || str[ft_strlen(cur->content) - 1] != '1')
-			return (0);
-		cur = cur->next;
-	}
 	i = 0;
-	while (get_str(lines)[i])
+	while (str[i])
 	{
-		if (get_str(lines)[i] != '1')
-			return (0);
-		i++;
-	}
-	lines = ft_lstlast(lines);
-	i = 0;
-	while (get_str(lines)[i])
-	{
-		if (get_str(lines)[i] != '1')
+		if (str[i] != '1')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int check_len(t_list *lines)
+int	check_borders(t_list *lines)
 {
-	char *str;
-	int len;
+	t_list	*cur;
+	char	*str;
 
-	str = get_str(lines);
-	len = ft_strlen(str);
-	while (lines) 
+	cur = lines;
+	while (cur)
 	{
-		str = get_str(lines);
+		str = cur->content;
+		if (str[0] != '1' || str[ft_strlen(str) - 1] != '1')
+			return (0);
+		cur = cur->next;
+	}
+	if (check_wall(lines->content) == 0)
+		return (0);
+	lines = ft_lstlast(lines);
+	return (check_wall(lines->content));
+}
+
+int	check_len(t_list *lines)
+{
+	char	*str;
+	int		len;
+
+	str = lines->content;
+	len = ft_strlen(str);
+	while (lines)
+	{
+		str = lines->content;
 		if (ft_strlen(str) != len)
 			return (0);
 		lines = lines->next;
@@ -68,39 +65,36 @@ int check_len(t_list *lines)
 	return (1);
 }
 
-int check_components(t_list *lines)
+int	check_components(t_map *map)
 {
-	int exit;
-	int col;
-	int start;
-	char *str;
+	int		exit;
+	int		start;
+	t_list	*lines;
+	char	*str;
 
 	exit = 0;
-	col = 0;
+	map->collectibles = 0;
 	start = 0;
-	while (lines) 
+	lines = map->lines;
+	while (lines)
 	{
 		str = lines->content;
 		while (*str)
 		{
-			if (*str == 'E')
-				exit++;
-			else if (*str == 'P')
-				start++;
-			else if (*str == 'C')
-				col++;
-			else if (*str == '1' || *str == '0')
-				;
-			else
+			exit += (*str == 'E');
+			start += (*str == 'P');
+			map->collectibles += (*str == 'C');
+			if (ft_stri("EPC10", *str) == -1)
 				return (0);
 			str++;
 		}
 		lines = lines->next;
 	}
-	return (exit > 0 && col > 0 && start > 0);
+	return (exit > 0 && map->collectibles > 0 && start > 0);
 }
 
-int check_map(t_list *lines)
+int	check_map(t_map *map)
 {
-	return (check_borders(lines) && check_components(lines) && check_len(lines));
+	return (check_borders(map->lines)
+		&& check_components(map) && check_len(map->lines));
 }

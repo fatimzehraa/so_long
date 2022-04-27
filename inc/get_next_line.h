@@ -6,7 +6,7 @@
 /*   By: fael-bou <fael-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 21:14:31 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/22 01:40:27 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/27 00:30:03 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include<unistd.h>
 # include<stdlib.h>
 
-#define BUFFER_SIZE 100
+# define BUFFER_SIZE 100
 
 char	*get_next_line(int fd);
 int		ft_strlen(char *s);

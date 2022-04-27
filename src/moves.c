@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 04:24:13 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/26 06:48:03 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/04/27 05:58:58 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -43,7 +43,10 @@ int go_right(t_map *map)
 		i = ft_stri(line, 'P');
 		if (i != -1)
 		{
-			if (line[i +1] == '1')
+			map->collectibles -= (line[i + 1] == 'C');
+			if (line[i + 1] == 'E')
+				return (map->collectibles);
+			if (line[i + 1] == '1')
 				return (1);
 			line[i] = '0';
 			line[i + 1] = 'P';
@@ -68,6 +71,9 @@ int go_left(t_map *map)
 		i = ft_stri(line, 'P');
 		if (i != -1)
 		{
+			map->collectibles -= (line[i - 1] == 'C');
+			if (line[i - 1] == 'E')
+				return (map->collectibles);
 			if (line[i - 1] == '1')
 				return (1);
 			line[i] = '0';
@@ -94,6 +100,9 @@ int go_up(t_map *map)
 		i = ft_stri(line, 'P');
 		if (i != -1)
 		{
+			map->collectibles -= (prev_line[i] == 'C');
+			if (prev_line[i] == 'E')
+				return (map->collectibles);
 			if (prev_line[i] == '1')
 				return (1);
 			line[i] = '0';
@@ -119,6 +128,9 @@ int go_down(t_map *map)
 		i = ft_stri(line, 'P');
 		if (i != -1)
 		{
+			map->collectibles -= (cur->next->content[i] == 'C');
+			if (cur->next->content[i] == 'E')
+				return (map->collectibles);
 			if (cur->next->content[i] == '1')
 				return (1);
 			line[i] = '0';
