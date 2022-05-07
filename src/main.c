@@ -6,102 +6,58 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/27 05:21:26 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:13:57 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdio.h>
-#include "get_next_line.h"
-#include "list.h"
 #include "so_long.h"
 
-void set_win(t_context *ctx, t_list *lines)
+void	set_win(t_context *ctx, t_list *lines)
 {
-	t_list *cur;
-	t_map *map;
-	int side;
+	t_list	*cur;
+	t_map	*map;
+	int		side;
 
 	map = &ctx->map;
 	map->height = 0;
 	cur = lines;
 	while (cur)
 	{
-		(map->height)++; 
+		(map->height)++;
 		cur = cur->next;
 	}
 	map->height *= SIDE_SQUARE;
 	map->width = ft_strlen(lines->content) * SIDE_SQUARE;
-	map->character = mlx_xpm_file_to_image(ctx->mlx, "P.xpm", &side, &side);
-	map->wall = mlx_xpm_file_to_image(ctx->mlx, "1.xpm", &side, &side);
-	map->coin = mlx_xpm_file_to_image(ctx->mlx, "C.xpm", &side, &side);
-	map->exit = mlx_xpm_file_to_image(ctx->mlx, "E.xpm", &side, &side);
+	map->character = mlx_xpm_file_to_image(ctx->mlx, "images/P.xpm", &side, &side);
+	map->wall = mlx_xpm_file_to_image(ctx->mlx, "images/1.xpm", &side, &side);
+	map->coin = mlx_xpm_file_to_image(ctx->mlx, "images/C.xpm", &side, &side);
+	map->exit = mlx_xpm_file_to_image(ctx->mlx, "images/E.xpm", &side, &side);
 }
 
-void set_square(t_context ctx , int x, int y, int color)
+int	close_game(void *param)
 {
-	int original_x = x;
-	int i = y + SIDE_SQUARE;
-	int k = x + SIDE_SQUARE;
-
-	while (y < i)
-	{
-		x = original_x;
-		while (x < k)
-		{
-	  		mlx_pixel_put(ctx.mlx, ctx.win, x, y, color);
-  			x++;
-		}
-  		y++;
-	}
+	free_ctx((t_context *)param);
+	exit(0);
 }
 
-void draw(t_context *ctx)
+int	main(int argc, char *argv[])
 {
-	int y = 0;
-	char *line;
-	t_list *cur;
+	t_context	ctx;
+	t_list		*lines;
 
-	cur = ctx->map.lines;
-	while (y < ctx->map.height)
-	{
-		int x = 0;
-		line = cur->content;
-		while (x < ctx->map.width)
-		{
-			if (*line == '1')
-				put_img(*ctx, x, y, ctx->map.wall);
-			else if (*line == '0')
-				set_square(*ctx, x, y, 0xFFFFFF);
-			else if (*line == 'C')
-				put_img(*ctx, x, y, ctx->map.coin);
-			else if (*line == 'P')
-				put_img(*ctx, x, y, ctx->map.character);
-			else if (*line == 'E')
-				put_img(*ctx, x, y, ctx->map.exit);
-			line++;
-			x+= SIDE_SQUARE;
-		}
-		cur = cur->next;
-		y += SIDE_SQUARE;
-	}
-}
-
-int main()
-{
-	t_context ctx;
-	t_list *lines;
-
-	lines = parse("maps", &ctx.map);
-	if (lines)
-		printf("%s", (char *)lines->content);
-
+	if (args_err(argc, argv))
+		return (1);
+	init_ctx(&ctx);
+	lines = parse(argv[1], &ctx.map);
+	if (lines == NULL)
+		return (1);
 	ctx.map.lines = lines;
-	ctx.mlx = mlx_init();
 	set_win(&ctx, lines);
 	ctx.win = mlx_new_window(ctx.mlx, ctx.map.width, ctx.map.height, "so_long");
-	mlx_key_hook( ctx.win, key_event, &ctx);
-
+	mlx_key_hook(ctx.win, key_event, &ctx);
+	mlx_hook(ctx.win, 17, 0, close_game, &ctx);
 	draw(&ctx);
 	mlx_loop(ctx.mlx);
+	free_ctx(&ctx);
+	return (0);
 }

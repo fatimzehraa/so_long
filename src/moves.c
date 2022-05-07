@@ -6,38 +6,19 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 04:24:13 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/27 05:58:58 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:00:20 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "get_next_line.h"
-#include "list.h"
 #include "so_long.h"
 
-int ft_stri(char *str, char c)
+int	go_right(t_map *map)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int go_right(t_map *map)
-{
-	char *line;
-	t_list *cur;
-	int i;
+	char	*line;
+	t_list	*cur;
+	int		i;
 
 	cur = map->lines;
-	while(cur)
+	while (cur)
 	{
 		line = cur->content;
 		i = ft_stri(line, 'P');
@@ -50,22 +31,22 @@ int go_right(t_map *map)
 				return (1);
 			line[i] = '0';
 			line[i + 1] = 'P';
-			break;
+			ft_printf("%d\n", ++(map->count));
+			break ;
 		}
 		cur = cur->next;
 	}
-	printf("go_right\n");
 	return (1);
 }
 
-int go_left(t_map *map)
+int	go_left(t_map *map)
 {
-	char *line;
-	t_list *cur;
-	int i;
+	char	*line;
+	t_list	*cur;
+	int		i;
 
 	cur = map->lines;
-	while(cur)
+	while (cur)
 	{
 		line = cur->content;
 		i = ft_stri(line, 'P');
@@ -78,20 +59,20 @@ int go_left(t_map *map)
 				return (1);
 			line[i] = '0';
 			line[i - 1] = 'P';
-			break;
+			ft_printf("%d\n", ++(map->count));
+			break ;
 		}
 		cur = cur->next;
 	}
-	printf("go_left\n");
 	return (1);
 }
 
-int go_up(t_map *map)
+int	go_up(t_map *map)
 {
-	t_list *cur;
-	char *line;
-	char *prev_line;
-	int i;
+	t_list	*cur;
+	char	*line;
+	char	*prev_line;
+	int		i;
 
 	cur = map->lines;
 	while (cur)
@@ -107,19 +88,19 @@ int go_up(t_map *map)
 				return (1);
 			line[i] = '0';
 			prev_line[i] = 'P';
+			ft_printf("%d\n", ++(map->count));
 		}
 		prev_line = cur->content;
 		cur = cur->next;
 	}
-	printf("go_up\n");
 	return (1);
 }
 
-int go_down(t_map *map)
+int	go_down(t_map *map)
 {
-	t_list *cur;
-	char *line;
-	int i;
+	t_list	*cur;
+	char	*line;
+	int		i;
 
 	cur = map->lines;
 	while (cur)
@@ -135,37 +116,35 @@ int go_down(t_map *map)
 				return (1);
 			line[i] = '0';
 			cur->next->content[i] = 'P';
+			ft_printf("%d\n", ++(map->count));
 			return (1);
 		}
 		cur = cur->next;
 	}
-	printf("go_down\n");
 	return (1);
 }
 
-/*
- *key_event kat9ra l key w kat3yet 3la l function li ghatdir dak lmove li 
- kaychbh l event
- * */
-
-int key_event(int key, t_context *ctx)
+int	key_event(int key, t_context *ctx)
 {
-	int stay_or_not;
+	int	stay_or_not;
 
 	stay_or_not = 1;
 	if (key == UP_KEY)
 		stay_or_not = go_up(&ctx->map);
-	if (key == DOWN_KEY)
+	else if (key == DOWN_KEY)
 		stay_or_not = go_down(&ctx->map);
-	if (key == LEFT_KEY)
+	else if (key == LEFT_KEY)
 		stay_or_not = go_left(&ctx->map);
-	if (key == RIGHT_KEY)
+	else if (key == RIGHT_KEY)
 		stay_or_not = go_right(&ctx->map);
-
-	mlx_clear_window( ctx->mlx, ctx->win);
-	draw (ctx);
+	else if (key == ESC_KEY)
+		exit (0);
+	else
+		return (0);
+//	mlx_clear_window( ctx->mlx, ctx->win);
+	draw(ctx);
 //	fflush(stdout);
 	if (stay_or_not == 0)
-		exit(0);
+		exit (0);
 	return (1);
 }

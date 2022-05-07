@@ -1,6 +1,6 @@
 *.o
 *.png
-*.xpm
 .gitignore
 *.jpg
 *.json
+.cache

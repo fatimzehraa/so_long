@@ -6,12 +6,13 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:42:36 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/26 06:47:58 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:08:56 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
+# include <stdlib.h>
 
 typedef struct s_list
 {

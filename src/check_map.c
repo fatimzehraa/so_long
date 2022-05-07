@@ -6,18 +6,15 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 02:05:24 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/04/27 04:31:01 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:06:42 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "list.h"
 #include "so_long.h"
-#include <stdlib.h>
 
-int check_wall(char *str)
+int	check_wall(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
