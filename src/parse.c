@@ -6,11 +6,12 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 00:29:22 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/07 15:02:04 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/09 23:37:46 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdlib.h>
 
 t_list	*get_lines(int fd)
 {
@@ -29,6 +30,7 @@ t_list	*get_lines(int fd)
 		new_node = ft_lstnew(line);
 		if (new_node == NULL)
 		{
+			free(line);
 			ft_lstclear(&lines, free);
 			return (NULL);
 		}
@@ -49,12 +51,12 @@ t_list	*parse(char *filename, t_map *map)
 		return (NULL);
 	}
 	lines = get_lines(fd);
+	close(fd);
 	if (lines == NULL)
 	{
 		print_error("failed to read the file");
 		return (NULL);
 	}
-	close(fd);
 	map->lines = lines;
 	if (check_map(map))
 		return (lines);

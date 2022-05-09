@@ -6,10 +6,11 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/07 15:13:57 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/09 22:38:35 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include "so_long.h"
 
 void	set_win(t_context *ctx, t_list *lines)
