@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 04:24:13 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 19:21:09 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 20:08:19 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long_bonus.h"
@@ -138,19 +138,13 @@ int	key_event(int key, t_context *ctx)
 	else if (key == RIGHT_KEY)
 		stay_or_not = go_right(&ctx->map);
 	else if (key == ESC_KEY)
-	{
-		free_ctx (0);
-		exit(0);
-	}
+		close_game(ctx);
 	else
 		return (0);
 	mlx_clear_window(ctx->mlx, ctx->win);
 	draw(ctx);
 	if (stay_or_not == 0)
-	{
-		free_ctx(ctx);
-		exit (0);
-	}
+		close_game(ctx);
 	print_moves(ctx);
 	return (1);
 }

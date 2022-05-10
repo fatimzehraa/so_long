@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:07:08 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 19:35:20 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 20:07:31 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int		args_err(int argc, char *argv[]);
 void	print_error(char *msg);
 void	free_ctx(t_context *ctx);
 void	init_ctx(t_context *ctx);
+int		close_game(void *param);
 
 #endif

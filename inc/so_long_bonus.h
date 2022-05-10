@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:07:08 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 19:44:39 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 20:07:21 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_BONUS_H
@@ -62,5 +62,6 @@ void	print_error(char *msg);
 void	free_ctx(t_context *ctx);
 void	init_ctx(t_context *ctx);
 void	print_moves(t_context *ctx);
+int		close_game(void *param);
 
 #endif
