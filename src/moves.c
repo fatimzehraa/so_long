@@ -6,10 +6,11 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 04:24:13 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 17:28:55 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:20:13 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
+#include <stdlib.h>
 
 int	go_right(t_map *map)
 {
@@ -138,7 +139,10 @@ int	key_event(int key, t_context *ctx)
 	else if (key == RIGHT_KEY)
 		stay_or_not = go_right(&ctx->map);
 	else if (key == ESC_KEY)
-		exit (0);
+	{
+		free_ctx (0);
+		exit(0);
+	}
 	else
 		return (0);
 	draw(ctx);
