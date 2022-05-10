@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/11 01:29:22 by fael-bou          #+#    #+#              #
-#    Updated: 2022/05/09 23:10:35 by fael-bou         ###   ########.fr        #
+#    Created: 2022/05/10 17:55:29 by fael-bou          #+#    #+#              #
+#    Updated: 2022/05/10 18:04:47 by fael-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MANDATORY_FILES = main.o parse.o check_map.o draw.o moves.o utils.o manage_err.o
 		lists/ft_lstmap.o lists/ft_lstsize.o lists/ft_lstadd_front.o \
 		lists/ft_lstdelone.o lists/ft_lstlast.o lists/ft_lstnew.o
 
-BONUS_FILES = bonus/main_bonus.o parse.o bonus/check_map_bonus.o bonus/draw_bonus.o bonus/moves_bonus.o bonus/utils_bonus.o manage_err.o\
+BONUS_FILES = bonus/main_bonus.o parse.o bonus/check_map_bonus.o bonus/draw_bonus.o bonus/moves_bonus.o bonus/utils_bonus.o manage_err.o bonus/moves_counter_bonus.o\
 		ft_printf/ft_printf.o ft_printf/ft_conversion.o ft_printf/ft_putchar.o\
 		ft_printf/ft_putnbr.o ft_printf/ft_putstr.o\
 		gnl/get_next_line.o gnl/get_next_line_utils.o \
@@ -49,15 +49,17 @@ $(NAME) : $(OBJ)
 $(BONUS_NAME) : $(BONUS_OBJ) 
 	$(CC) $(LDFLAGS) $^ -o $@
 
-$(BUILD_DIR)/%.o : src/%.c 
+$(BUILD_DIR)/%.o : src/%.c inc/so_long.h inc/so_long_bonus.h inc/ft_printf.h inc/get_next_line.h inc/list.h
 	mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean :
 	rm -rf $(OBJ) $(BONUS_OBJ)
+	rm -rf $(BUILD_DIR)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
+
 re : fclean all
 
 .PHONY: all clean fclean

@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 04:24:13 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/09 23:27:09 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:29:13 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long_bonus.h"
@@ -31,7 +31,7 @@ int	go_right(t_map *map)
 				return (line[i + 1] == '1');
 			line[i] = '0';
 			line[i + 1] = 'P';
-			ft_printf("%d\n", ++(map->count));
+			++(map->count);
 			break ;
 		}
 		cur = cur->next;
@@ -59,7 +59,7 @@ int	go_left(t_map *map)
 				return (line[i - 1] == '1');
 			line[i] = '0';
 			line[i - 1] = 'P';
-			ft_printf("%d\n", ++(map->count));
+			++(map->count);
 			break ;
 		}
 		cur = cur->next;
@@ -88,7 +88,7 @@ int	go_up(t_map *map)
 				return (prev_line[i] == '1');
 			line[i] = '0';
 			prev_line[i] = 'P';
-			ft_printf("%d\n", ++(map->count));
+			++(map->count);
 		}
 		prev_line = cur->content;
 		cur = cur->next;
@@ -116,7 +116,7 @@ int	go_down(t_map *map)
 				return (cur->next->content[i] == '1');
 			line[i] = '0';
 			cur->next->content[i] = 'P';
-			ft_printf("%d\n", ++(map->count));
+			++(map->count);
 			return (1);
 		}
 		cur = cur->next;
@@ -141,10 +141,13 @@ int	key_event(int key, t_context *ctx)
 		exit (0);
 	else
 		return (0);
-//	mlx_clear_window( ctx->mlx, ctx->win);
+	mlx_clear_window(ctx->mlx, ctx->win);
 	draw(ctx);
-//	fflush(stdout);
 	if (stay_or_not == 0)
+	{
+		free_ctx(ctx);
 		exit (0);
+	}
+	print_moves(ctx);
 	return (1);
 }

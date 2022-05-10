@@ -6,14 +6,14 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/09 22:38:35 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:41:35 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "so_long.h"
 
-void	set_win(t_context *ctx, t_list *lines)
+int	set_win(t_context *ctx, t_list *lines)
 {
 	t_list	*cur;
 	t_map	*map;
@@ -33,6 +33,7 @@ void	set_win(t_context *ctx, t_list *lines)
 	map->wall = mlx_xpm_file_to_image(ctx->mlx, "images/1.xpm", &side, &side);
 	map->coin = mlx_xpm_file_to_image(ctx->mlx, "images/C.xpm", &side, &side);
 	map->exit = mlx_xpm_file_to_image(ctx->mlx, "images/E.xpm", &side, &side);
+	return (map->character && map->wall && map->coin && map->exit);
 }
 
 int	close_game(void *param)
@@ -53,7 +54,8 @@ int	main(int argc, char *argv[])
 	if (lines == NULL)
 		return (1);
 	ctx.map.lines = lines;
-	set_win(&ctx, lines);
+	if (!set_win(&ctx, lines))
+		return (free_ctx(&ctx), 1);
 	ctx.win = mlx_new_window(ctx.mlx, ctx.map.width, ctx.map.height, "so_long");
 	mlx_key_hook(ctx.win, key_event, &ctx);
 	mlx_hook(ctx.win, 17, 0, close_game, &ctx);

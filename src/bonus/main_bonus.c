@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/09 23:26:58 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:23:46 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	set_win(t_context *ctx, t_list *lines)
 	map->coin = mlx_xpm_file_to_image(ctx->mlx, "images/C.xpm", &side, &side);
 	map->exit = mlx_xpm_file_to_image(ctx->mlx, "images/E.xpm", &side, &side);
 	map->enemy = mlx_xpm_file_to_image(ctx->mlx, "images/W.xpm", &side, &side);
-	return map->character && map->wall && map->coin && map->exit && map->enemy;
+	return (map->character && map->wall && map->coin && map->exit && map->enemy);
 }
 
 int	close_game(void *param)
@@ -57,7 +57,7 @@ int	main(int argc, char *argv[])
 	ctx.map.lines = lines;
 	if (!set_win(&ctx, lines))
 		return (free_ctx(&ctx), 1);
-	ctx.win = mlx_new_window(ctx.mlx, ctx.map.width, ctx.map.height, "so_long");
+	ctx.win = mlx_new_window(ctx.mlx, ctx.map.width, ctx.map.height + 40, "so_long");
 	mlx_key_hook(ctx.win, key_event, &ctx);
 	mlx_hook(ctx.win, 17, 0, close_game, &ctx);
 	draw(&ctx);

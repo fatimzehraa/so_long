@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 04:24:13 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/07 15:00:20 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:28:55 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -141,10 +141,11 @@ int	key_event(int key, t_context *ctx)
 		exit (0);
 	else
 		return (0);
-//	mlx_clear_window( ctx->mlx, ctx->win);
 	draw(ctx);
-//	fflush(stdout);
 	if (stay_or_not == 0)
+	{
+		free_ctx(ctx);
 		exit (0);
+	}
 	return (1);
 }
