@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 00:07:08 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 17:12:32 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:44:39 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_BONUS_H
@@ -29,6 +29,7 @@ typedef struct s_map
 	void			*coin;
 	void			*character;
 	void			*exit;
+	void			*way;
 	void			*enemy;
 	int				collectibles;
 	unsigned int	count;

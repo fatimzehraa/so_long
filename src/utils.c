@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 17:14:19 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/09 22:39:08 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:40:05 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_ctx(t_context *ctx)
 		ctx->win = NULL;
 		ctx->map.lines = NULL;
 		ctx->map.wall = NULL;
+		ctx->map.way = NULL;
 		ctx->map.coin = NULL;
 		ctx->map.character = NULL;
 		ctx->map.exit = NULL;
@@ -71,6 +72,8 @@ void	free_ctx(t_context *ctx)
 			mlx_destroy_image(ctx->mlx, ctx->map.character);
 		if (ctx->map.coin != NULL)
 			mlx_destroy_image(ctx->mlx, ctx->map.coin);
+		if (ctx->map.way != NULL)
+			mlx_destroy_image(ctx->mlx, ctx->map.way);
 		if (ctx->map.exit != NULL)
 			mlx_destroy_image(ctx->mlx, ctx->map.exit);
 		if (ctx->win != NULL)

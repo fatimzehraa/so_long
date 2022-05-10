@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 02:27:10 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/09 22:38:05 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:37:50 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,12 @@ void	put_img(t_context ctx, int x, int y, void *img)
 	mlx_put_image_to_window(ctx.mlx, ctx.win, img, x, y);
 }
 
-void	set_square(t_context ctx, int x, int y, int color)
-{
-	int	original_x;
-	int	i;
-	int	k;
-
-	original_x = x;
-	i = y + SIDE_SQUARE;
-	k = x + SIDE_SQUARE;
-	while (y <= i)
-	{
-		x = original_x;
-		while (x <= k)
-		{
-			mlx_pixel_put(ctx.mlx, ctx.win, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
 void	mini_draw(t_context *ctx, int x, int y, char a)
 {
 	if (a == '1')
 		put_img(*ctx, x, y, ctx->map.wall);
 	else if (a == '0')
-		set_square(*ctx, x, y, 0xFFFFFF);
+		put_img(*ctx, x, y, ctx->map.way);
 	else if (a == 'C')
 		put_img(*ctx, x, y, ctx->map.coin);
 	else if (a == 'P')

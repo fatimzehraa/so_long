@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:05:58 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 17:23:46 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:43:50 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int	set_win(t_context *ctx, t_list *lines)
 	map->width = ft_strlen(lines->content) * SIDE_SQUARE;
 	map->character = mlx_xpm_file_to_image(ctx->mlx, "images/P.xpm", &side, &side);
 	map->wall = mlx_xpm_file_to_image(ctx->mlx, "images/1.xpm", &side, &side);
+	map->way = mlx_xpm_file_to_image(ctx->mlx, "images/0.xpm", &side, &side);
 	map->coin = mlx_xpm_file_to_image(ctx->mlx, "images/C.xpm", &side, &side);
 	map->exit = mlx_xpm_file_to_image(ctx->mlx, "images/E.xpm", &side, &side);
 	map->enemy = mlx_xpm_file_to_image(ctx->mlx, "images/W.xpm", &side, &side);
-	return (map->character && map->wall && map->coin && map->exit && map->enemy);
+	return (map->character && map->wall && map->coin && map->exit && map->way && map->enemy);
 }
 
 int	close_game(void *param)
