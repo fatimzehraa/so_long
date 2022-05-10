@@ -6,7 +6,7 @@
 /*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:27:34 by fael-bou          #+#    #+#             */
-/*   Updated: 2022/05/10 17:19:44 by fael-bou         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:55:40 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,10 @@ static int	count_size(int n)
 void	ft_itoa(char *ascii_s, unsigned int n)
 {
 	int		i;
-	int		is_neg;
 
-	is_neg = n < 0;
 	i = count_size(n);
-	ascii_s[0] = '-';
 	ascii_s[i] = 0;
-	if (is_neg)
-		n = -n;
-	while (i > is_neg)
+	while (i > 0)
 	{
 		i--;
 		ascii_s[i] = n % 10 + '0';
